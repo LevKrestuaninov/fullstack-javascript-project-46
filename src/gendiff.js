@@ -4,19 +4,21 @@ const program = new Command();
 
 program
   .name('gendiff ')
-  .description('CLI to some JavaScript string utilities')
-  .version('0.8.0');
+  .description(' Compares two configuration files and shows a difference.')
+  .version('0.8.0')
+  .argument('<filepath1>')
+  .argument('<filepath2>')
+  .option('-f, --format <type>', 'output format');
+/*
+  program
+  .option('-d, --debug', 'output extra debugging')
+  .option('-s, --small', 'small pizza size') */
 
-program.command('split')
-  .description('Split a string into substrings and display as an array')
-  .argument('<string>', 'string to split')
-  .option('--first', 'display just the first substring')
-  .option('-s, --separator <char>', 'separator character', ',')
-  .action((str, options) => {
-    const limit = options.first ? 1 : undefined;
-    console.log(str.split(options.separator, limit));
-  });
-
-program.parse();
+program.parse(process.argv);
+/*
+const options = program.opts();
+if (options.debug) console.log(options);
+// https://github.com/tj/commander.js/#options
+*/
 
 export default program;
