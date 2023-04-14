@@ -1,39 +1,77 @@
 import _ from 'lodash';
 import getFile from './getFile.js';
+import genDiff from './genDiff.js';
 
-/*
-const genDiff = (dataParce1, dataParce2) => {
-    const keys1 = _.keys(dataParce1)
-    const keys2 = _.keys(dataParce2)
-    const keys = _.union(keys1, keys2);
-    console.log(keys);
-    const result = {}// keys.reduce((acc, ));
-    keys.map((key) => {
-        console.log(result);
-        if (!_.has(dataParce1, key)) {
-            result[key] = '-';
-            console.log('1')
-        } else if (!_.has(dataParce2, key)) {
-            result[key] = '+';
-        } else if (dataParce1[key] !== dataParce2[key]) {
-            result[key] = '-';
-        } else {
-            result[key] = '';
-        }
-    })
+export default (filepath1, filepath2) => {
+  const file1 = getFile(filepath1);
+  const file2 = getFile(filepath2);
 
-    return result;
-}
-*/
+  const a = genDiff(file1, file2);
+  // console.log(a);
 
-export default (filepath1, filepath2) => { 
-    const file1 = getFile(filepath1);
-    const file2 = getFile(filepath2);
-    console.log(file1)
-    console.log(file2)
+  const writeOut = (diff) => {
+    const getDiffChange = (obj) => {
+      const stat = obj.diff_status;
+      const diffSymbol = {
+        added: '  + ',
+        deleted: '  - ',
+        equal: '    ',
+      };
+      switch (stat) {
+        case 'deleted':
+          return diffSymbol.deleted;
+        case 'added':
+          return diffSymbol.added;
+        case 'equal':
+          return diffSymbol.equal;
+        case 'changed':
+          return diffSymbol.equal;
+        default:
+          break;
+      }
+      return '';
+    };
 
-    const keys = _.union(Object.keys(file1), Object.keys(file2));
-    const sorted = _.sortBy(keys);
-    console.log(sorted);
-    return;
-}
+    // const getCountVal = (strObj) => strObj.match('value')//.length
+
+    console.log('{');
+    const copyDiff = _.cloneDeep(diff);
+    const entries = Object.entries(copyDiff);
+    const res = entries.map(([key, obj]) => {
+      if (Object.hasOwn(obj, 'value2')) {
+        const k1 = `  - ${key}`;
+        console.log(`${k1} : ${obj.value}`);
+        const k2 = `  + ${key}`;
+        console.log(`${k2} : ${obj.value2}`);
+      } else {
+        const k = `${getDiffChange(obj)}${key}`;
+        console.log(`${k} : ${obj.value}`);
+      }
+      return '';
+    });
+    console.log('}');
+    /*
+        for (let [k, obj] of entries) {
+            //console.log('k: ' + k )
+
+            if (obj.diff_status === 'deleted') {
+                k = `${diffSymbol.deleted}${k}`;
+            }
+            if (obj.diff_status === 'added') {
+                k = `${diffSymbol.added}${k}`;
+            }
+            if (obj.diff_status === 'equal') {
+                k = `${diffSymbol.equal}${k}`;
+            }
+            if (obj.diff_status === 'changed') {
+                k = `${diffSymbol.equal}${k}`;
+            }
+            res[k] = obj;
+
+            console.log(k + ' : ' + obj.value);
+        } */
+    // console.log(res)
+    // console.log(`${Object.entries(res).join()}`)
+  };
+  writeOut(a);
+};
