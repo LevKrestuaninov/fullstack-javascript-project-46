@@ -13,6 +13,7 @@ const getParser = (type) => {
       console.log('def');
       break;
   }
+  return 'parser err';
 };
 
 export default getParser;
