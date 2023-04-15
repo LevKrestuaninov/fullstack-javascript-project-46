@@ -9,7 +9,7 @@ const genDiff = (file1, file2) => {
     const [value1, value2] = [file1[key], file2[key]];
 
     if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
-      return { ...acc, [key]: getDiff(value1, value2) };
+      return { ...acc, [key]: genDiff(value1, value2) };
     }
 
     switch (true) {
