@@ -4,12 +4,15 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: clone repo
+        uses: actions/checkout@v2
+      - name: installation
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
           cache: 'npm'
       - run: make install
-      - run: make lint
-      - run: make test
+      - name: check linter status
+        run: make lint
+      - name: run test with coverage
+        run: make test-coverage
