@@ -1,7 +1,7 @@
-name: myWorkdlow
+name: tests
 on: push
 jobs:
-  my-job:
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: clone repo
@@ -17,6 +17,8 @@ jobs:
       - name: run test with coverage
         run: make test-coverage
       - name: codeclimate coverage
-    uses: paambaati/codeclimate-action@v3.0.0
-    env:
-      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
+  
