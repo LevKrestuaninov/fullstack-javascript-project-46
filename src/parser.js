@@ -13,5 +13,4 @@ const getParser = (type) => {
       return 'getParser err';
   }
 };
-
 export default getParser;
