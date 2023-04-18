@@ -1,24 +1,33 @@
-name: tests
-on: push
+name: Node CI
+on:
+  - push
+  - pull_request
+env:
+  CI: true
 jobs:
-  install:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
     steps:
-      - name: clone repo
-        uses: actions/checkout@v2
-      - name: installation
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: make install
-      - name: check linter status
-        run: make lint
-      - name: run test with coverage
-        run: make test-coverage
-      - name: codeclimate coverage
-        uses: paambaati/codeclimate-action@v3.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-
-  
+      - run: make lint
+      - run: make test
+      # - name: Test & publish code coverage
+      #   # Publish code coverage on Code Climate
+      #   # https://github.com/paambaati/codeclimate-action
+      #   uses: paambaati/codeclimate-action@v3.0.0
+      #   # Add Code Climate secret key
+      #   env:
+      #     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      #   with:
+      #     coverageCommand: make test-coverage
+      #     debug: true
