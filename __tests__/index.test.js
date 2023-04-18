@@ -1,7 +1,7 @@
-import index from "../src/idex";
+import index from '../src/idex.js';
 
-const filepath1 ='../__fixtures__/file1.json';
-const filepath2 ='../__fixtures__/file2.json';
+const filepath1 = './__fixtures__/file1.json';
+const filepath2 = './__fixtures__/file2.json';
 
 const expect1 = `{
   - follow : false
@@ -12,7 +12,7 @@ const expect1 = `{
   + verbose : true
 }`;
 
-test ('genDiff1', () => {
-    const res = index(filepath1, filepath2);
-    expect(res).toEqual(expect1);
-})
+test('genDiff1', () => {
+  const res = index(filepath1, filepath2);
+  expect(res).toEqual(expect1);
+});

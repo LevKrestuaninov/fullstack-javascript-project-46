@@ -10,9 +10,8 @@ const getParser = (type) => {
     case '.yaml':
       return getYAMLData;
     default:
-      return 'getParser err'
+      return 'getParser err';
   }
-  return 'parser err';
 };
 
-export default getParser
+export default getParser;
