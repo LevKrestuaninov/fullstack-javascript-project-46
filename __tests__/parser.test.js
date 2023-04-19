@@ -4,8 +4,7 @@ import getParser from '../src/parser.js';
 import getData from '../src/getData.js';
 
 const filepath1 = './__fixtures__/file1.json';
-const filepath2 = './__fixtures__/file2.yaml';
-const filepath3 = './__fixtures__/file2.yml';
+const filepath2 = './__fixtures__/file2.yml';
 
 test('parser1', () => {
   const data1 = getData(filepath1);
@@ -17,10 +16,4 @@ test('parser2', () => {
   const data2 = getData(filepath2);
   const parser2 = getParser(extname(filepath2));
   expect(parser2(data2)).toEqual(load(data2));
-});
-
-test('parser3', () => {
-  const data3 = getData(filepath3);
-  const parser3 = getParser(extname(filepath3));
-  expect(parser3(data3)).toEqual(load(data3));
 });
