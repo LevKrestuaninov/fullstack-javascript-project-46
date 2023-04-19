@@ -9,6 +9,8 @@ const getParser = (type) => {
       return getJSONData;
     case '.yaml':
       return getYAMLData;
+    case '.yml':
+      return getYAMLData;
     default:
       return 'getParser err';
   }
