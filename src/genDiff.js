@@ -25,20 +25,6 @@ const genDiff = (file1, file2) => {
         return (console.error('Unexpected values'));
     }
   }, { });
-    /*
-    keys.map((key) => {
-
-        if (!_.has(file1, key)) {
-            result[key] = '-';
-            console.log('1')
-        } else if (!_.has(file2, key)) {
-            result[key] = '+';
-        } else if (file1[key] !== file2[key]) {
-            result[key] = '-';
-        } else {
-            result[key] = '';
-        }
-    }) */
 
   return result;
 };
