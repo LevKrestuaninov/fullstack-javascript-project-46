@@ -12,10 +12,10 @@ program
   .argument('<filepath1>', 'path to file 1')
   .argument('<filepath2>', 'path to file 1')
   .action((filepath1, filepath2) => {
-    console.log(genDiff(filepath1, filepath2,  program.opts()));
+    console.log(genDiff(filepath1, filepath2, program.opts()));
   });
 
-  /*
+/*
   .option('-f, --format <string>', 'output format', 'stylish')
   .parse(process.argv);
   const options = program.opts();
