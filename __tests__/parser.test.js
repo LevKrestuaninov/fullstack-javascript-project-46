@@ -3,8 +3,8 @@ import { load } from 'js-yaml';
 import getParser from '../src/parser.js';
 import getData from '../src/getData.js';
 
-const filepath1 = './__fixtures__/file1.json';
-const filepath2 = './__fixtures__/file2.yml';
+const filepath1 = './__fixtures__/plain1.json';
+const filepath2 = './__fixtures__/plain2.yml';
 
 test('parser1', () => {
   const data1 = getData(filepath1);
