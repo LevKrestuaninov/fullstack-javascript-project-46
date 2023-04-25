@@ -1,5 +1,6 @@
 import plain from './plain.js';
 import stylish from './stylish.js';
+import json from './json.js';
 
 const getFormat = (formatName) => {
   if (!formatName) {
@@ -9,10 +10,12 @@ const getFormat = (formatName) => {
   const { format } = formatName;
 
   switch (format) {
-    case ('stylish'):
+    case 'stylish':
       return stylish;
-    case ('plain'):
+    case 'plain':
       return plain;
+    case 'json':
+      return json;
     default:
       console.log(`${format}Wrong formatter! Selected stylish bu default`);
       return stylish;
