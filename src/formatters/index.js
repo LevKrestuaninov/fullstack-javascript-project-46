@@ -7,9 +7,7 @@ const getFormat = (formatName) => {
     return stylish;
   }
 
-  console.log(formatName)
-
-  switch (formatName['format']) {
+  switch (formatName) {
     case ('stylish'):
       return stylish;
     case ('plain'):
