@@ -7,17 +7,17 @@ const getFormat = (formatName) => {
     return stylish;
   }
 
-  const { format } = formatName;
+  console.log(formatName)
 
-  switch (format) {
-    case 'stylish':
+  switch (formatName['format']) {
+    case ('stylish'):
       return stylish;
-    case 'plain':
+    case ('plain'):
       return plain;
-    case 'json':
+    case ('json'):
       return json;
     default:
-      console.log(`${format}Wrong formatter! Selected stylish bu default`);
+      console.log(`${formatName} Wrong formatter! Selected stylish bu default`);
       return stylish;
   }
 };
