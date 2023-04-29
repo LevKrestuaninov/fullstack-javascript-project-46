@@ -12,7 +12,7 @@ const getParser = (type) => {
     case '.yml':
       return getYAMLData;
     default:
-      return 'getParser err';
+      return new Error(`Unsupported type - ${type}`);
   }
 };
 export default getParser;

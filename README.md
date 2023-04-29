@@ -12,6 +12,7 @@ Support 3 different output format.
 
 ## Setup
 ```sh
+git clont
 make install
 npm link
 ```

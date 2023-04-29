@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "Programm thst shows the difference between two files in three different formats",
   "main": "src/index.js",
   "scripts": {
     "test": "npx jest"
