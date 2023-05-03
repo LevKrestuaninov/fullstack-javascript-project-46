@@ -32,8 +32,7 @@ const makePlainDiff = (diff) => {
           case ('changed'):
             return [...acc, `Property '${currentPath.join('.')}' ${possibleStatus[status]}`];
           default:
-            console.error('Somethig goes worng');
-            return null;
+            throw new Error(`Unsupported status - ${status} `);
         }
       }
 

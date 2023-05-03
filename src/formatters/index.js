@@ -15,8 +15,7 @@ const getFormat = (formatName) => {
     case ('json'):
       return json;
     default:
-      console.log(`${formatName} Wrong formatter! Selected stylish bu default`);
-      return stylish;
+      throw new Error(`Unsupported formatName - ${formatName} `);
   }
 };
 

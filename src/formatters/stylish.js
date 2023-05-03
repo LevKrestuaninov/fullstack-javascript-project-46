@@ -7,13 +7,15 @@ const makeStylish = (diff) => {
     equal: '    ',
   };
 
+  const indent = '    ';
+
   const iter = (nest, depth) => {
     if (!_.isPlainObject(nest)) {
       return `${nest}`;
     }
 
-    const endBracketPadding = '    '.repeat(depth);
-    const padding = `${'    '.repeat(depth + 1)}`;
+    const endBracketPadding = indent.repeat(depth);
+    const padding = `${indent.repeat(depth + 1)}`;
     const sorted = _.sortBy(Object.entries(nest));
 
     const lines = sorted.reduce((acc, [key, value]) => {
@@ -21,14 +23,14 @@ const makeStylish = (diff) => {
       const status = (value || { }).diff_status;
 
       if (status === 'changed') {
-        const newPadding = `${'    '.repeat(depth)}${diffSymbol.deleted}`;
-        const newPadding2 = `${'    '.repeat(depth)}${diffSymbol.added}`;
+        const newPadding = `${indent.repeat(depth)}${diffSymbol.deleted}`;
+        const newPadding2 = `${indent.repeat(depth)}${diffSymbol.added}`;
         return [...acc, lineMaker(key, nest[key].value, newPadding),
           lineMaker(key, nest[key].value2, newPadding2)];
       }
 
       if (status) {
-        const newPadding = `${'    '.repeat(depth)}${diffSymbol[status]}`;
+        const newPadding = `${indent.repeat(depth)}${diffSymbol[status]}`;
         return [...acc, lineMaker(key, nest[key].value, newPadding)];
       }
 

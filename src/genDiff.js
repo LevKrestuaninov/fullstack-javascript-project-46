@@ -20,7 +20,7 @@ const genDiff = (file1, file2) => {
       case (!_.isEqual(value1, value2)):
         return { ...acc, [key]: { value: value1, value2, diff_status: 'changed' } };
       default:
-        return (console.error('Unexpected values'));
+        throw new Error('Unsupported values');
     }
   }, { });
 
